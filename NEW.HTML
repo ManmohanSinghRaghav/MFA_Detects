@@ -52,7 +52,7 @@
             outline: none;
         }
         button {
-            background-color: #007bff;
+            background-color: white;
             color: #fff;
             padding: 10px;
             font-size: 16px;
@@ -66,6 +66,10 @@
         }
         #qrcode {
             margin-top: 20px;
+        }
+        #gps-status {
+            margin-top: 10px;
+            color: red;
         }
     </style>    
 </head>
@@ -101,6 +105,7 @@
             <button type="button" onclick="generateQRCode()" style="color: gray;">Generate QR Code</button><br>
         </form>
         <div id="qrcode"></div>
+        <div id="gps-status"></div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -117,6 +122,54 @@
             var qrcodeContainer = document.getElementById("qrcode");
             qrcodeContainer.innerHTML = ""; // Clear previous QR code
             new QRCode(qrcodeContainer, text);
+
+            checkLocation();
+        }
+
+        function checkLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(success, error);
+            } else {
+                document.getElementById("gps-status").innerText = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function success(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            
+            // Define the designated campus area
+            var campusLatitude = 27.605837;  // Replace with actual campus latitude
+            var campusLongitude = 77.594537;  // Replace with actual campus longitude
+            var radius = 5.1987;  // Replace with the radius of the campus area in meters
+
+            // Calculate the distance between the user's location and the campus location
+            if (isWithinCampus(latitude, longitude, campusLatitude, campusLongitude, radius)) {
+                document.getElementById("gps-status").innerText = "You are within the designated campus area.";
+            } else {
+                document.getElementById("gps-status").innerText = "You are not within the designated campus area.";
+            }
+        }
+
+        function error() {
+            document.getElementById("gps-status").innerText = "Unable to retrieve your location.";
+        }
+
+        function isWithinCampus(lat1, lon1, lat2, lon2, radius) {
+            var R = 6371e3; // Radius of the Earth in meters
+            var φ1 = lat1 * Math.PI/180;
+            var φ2 = lat2 * Math.PI/180;
+            var Δφ = (lat2-lat1) * Math.PI/180;
+            var Δλ = (lon2-lon1) * Math.PI/180;
+
+            var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+                    Math.cos(φ1) * Math.cos(φ2) *
+                    Math.sin(Δλ/2) * Math.sin(Δλ/2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+            var distance = R * c; // Distance in meters
+
+            return distance <= radius;
         }
     </script>
 </body>
