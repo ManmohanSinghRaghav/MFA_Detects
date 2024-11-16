@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <style>
+        body {
+            font-family: "Ubuntu", sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        /* Style the container */
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+        /* Style the h1 element */
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        /* Style the form */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        label {
+            margin-top: 10px;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #qrcode {
+            margin-top: 20px;
+        }
+    </style>    
+</head>
+<body>
+    <div class="container">
+        <h1>QR Code Generator</h1>
+        <form id="qrForm">
+            <label for="Depart">Select Your Department</label>
+            <select name="Department" id="Depart">
+                <option value="BTech">BTech</option>
+                <option value="BBA">BBA</option>
+                <option value="BCA">BCA</option>
+                <option value="MBA">MBA</option>
+            </select><br>
+
+            <label for="Years">Select Your Year</label>
+            <select name="Years" id="Years">
+                <option value="1st">1st Year</option>
+                <option value="2nd">2nd Year</option>
+                <option value="3rd">3rd Year</option>
+                <option value="4th">4th Year</option>
+            </select><br>
+
+            <label for="name">Enter Your Name</label>
+            <input type="text" id="name" placeholder="Enter your name" required><br>
+
+            <label for="num">Enter Roll Number</label>
+            <input type="number" id="num" placeholder="Enter roll number" required><br>
+
+            <label for="date">Select Date</label>
+            <input type="date" id="date" required><br>
+
+            <button type="button" onclick="generateQRCode()">Generate QR Code</button><br>
+        </form>
+        <div id="qrcode"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        function generateQRCode() {
+            var department = document.getElementById("Depart").value;
+            var year = document.getElementById("Years").value;
+            var name = document.getElementById("name").value;
+            var rollNumber = document.getElementById("num").value;
+            var date = document.getElementById("date").value;
+
+            var text = `Department: ${department}, Year: ${year}, Name: ${name}, Roll Number: ${rollNumber}, Date: ${date}`;
+
+            var qrcodeContainer = document.getElementById("qrcode");
+            qrcodeContainer.innerHTML = ""; // Clear previous QR code
+            new QRCode(qrcodeContainer, text);
+        }
+    </script>
+</body>
+</html>
