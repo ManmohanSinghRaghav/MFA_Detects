@@ -6,8 +6,7 @@ import { listAll,getDownloadURL } from 'firebase/storage';
 import { ref } from 'firebase/storage';
 
 import SearchComponent from './SearchComponent';
-const URL1 = process.env.REACT_APP_SERVER_URL;
-const URL="https://mern-attendance-app-api.onrender.com"
+const URL = process.env.REACT_APP_SERVER_URL;
 function StudentList({ studentList, attendanceData, handleAttendanceChange }) {
   const [searchResults, setSearchResults] = useState(studentList);
   const [defaultAttendanceData, setDefaultAttendanceData] = useState({});
@@ -158,7 +157,7 @@ for (let i = combinedAttendanceArray.length - 1; i >= 0; i--) {
                   {fileUrls[student.Register_number] && (
                     <img
                       src={fileUrls[student.Register_number] }
-                      alt={`Photo of ${student.Register_number}`}
+                      alt={`${student.Register_number}`}
                       style={{ maxWidth: '100px', maxHeight: '100px' }}
                     />
                 

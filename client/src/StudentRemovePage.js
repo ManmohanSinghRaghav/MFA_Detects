@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import Axios from 'axios';
 import './StudentRemoval.css'; // Import your CSS file
 
-const URL1 = process.env.REACT_APP_SERVER_URL;
-const URL="https://mern-attendance-app-api.onrender.com"
+const URL = process.env.REACT_APP_SERVER_URL;
 const StudentRemovalForm = () => {
   const [registerNumber, setRegisterNumber] = useState('');
     const [studentDetails, setStudentDetails] = useState(null);

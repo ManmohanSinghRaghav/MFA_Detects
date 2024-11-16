@@ -9,8 +9,7 @@ import {
 } from "firebase/storage";
 import { storage } from "./firebase";
 import './StudentForm.css';
-const URL1 = process.env.REACT_APP_SERVER_URL;
-const URL="https://mern-attendance-app-api.onrender.com"
+const URL = process.env.REACT_APP_SERVER_URL;
 const StudentFormPage = () => {
     const [insertStudent, setInsertStudent] = useState('');
   const [formData, setFormData] = useState({
@@ -64,14 +63,7 @@ const StudentFormPage = () => {
         Register_number: '',
         Year_of_studying: '',
         Branch_of_studying: '',
-        Date_of_Birth: '',
-        Gender: '',
-        Community: '',
-        Minority_Community: '',
-        Blood_Group: '',
-        Aadhar_number: '',
-        Mobile_number: '',
-        Email_id: '',
+        Date_of_Birth: ''
       });
 
       // Clear search results if any
@@ -107,30 +99,8 @@ const StudentFormPage = () => {
 
         <label>Date of Birth:</label>
         <input type="text" name="Date_of_Birth" value={formData.Date_of_Birth} onChange={handleChange} />
-
-        <label>Gender:</label>
-        <input type="text" name="Gender" value={formData.Gender} onChange={handleChange} />
-
-        <label>Community:</label>
-        <input type="text" name="Community" value={formData.Community} onChange={handleChange} />
-
-        <label>Minority Community:</label>
-        <input type="text" name="Minority_Community" value={formData.Minority_Community} onChange={handleChange} />
-
-        <label>Blood Group:</label>
-        <input type="text" name="Blood_Group" value={formData.Blood_Group} onChange={handleChange} />
-
-        <label>Aadhar Number:</label>
-        <input type="text" name="Aadhar_number" value={formData.Aadhar_number} onChange={handleChange} />
-
-        <label>Mobile Number:</label>
-        <input type="text" name="Mobile_number" value={formData.Mobile_number} onChange={handleChange} />
-
-        <label>Email ID:</label>
-        <input type="text" name="Email_id" value={formData.Email_id} onChange={handleChange} />
-
-              <button type="submit" onClick={uploadFile}>Add Student</button>
-              {insertStudent && <p>{insertStudent}</p>} 
+        <button type="submit" onClick={uploadFile}>Add Student</button>
+        {insertStudent && <p>{insertStudent}</p>} 
       </form>
     </div>
   );

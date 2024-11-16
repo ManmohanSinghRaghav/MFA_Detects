@@ -94,8 +94,8 @@ function App() {
       <div className="App">
         <nav className="MenuBar">
           {/* Menu bar with links to StudentFormPage and RemoveStudentPage */}
-          <Link to="/form">ADD VOLUNTEER</Link>
-        <Link to="/remove">REMOVE VOLUNTEER</Link>
+          <Link to="/form">ADD STUDENT</Link>
+        <Link to="/remove">REMOVE STUDENT</Link>
         <Link to="/data">DOWNLOAD ATTENDANCE</Link>
         <button onClick={handleSignOut}>Sign Out</button>
         </nav>

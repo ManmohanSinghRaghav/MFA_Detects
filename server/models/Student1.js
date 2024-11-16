@@ -17,29 +17,7 @@ const StudentSchema = new mongoose.Schema({
     },
     Date_of_Birth: {
         type:String
-    },
-    Gender: {
-        type:String
-    },
-    Community: {
-        type:String
-    },
-    Minority_Community: {
-        type:String
-    },
-    Blood_Group: {
-        type:String
-    },
-    Aadhar_number: {
-        type:String
-    },
-    Mobile_number: {
-        type:String
-    },
-    Email_id: {
-        type:String
     }
-
 });
 // Middleware to remove associated attendance records when a student is removed
 StudentSchema.pre('findOneAndRemove', async function (next) {
