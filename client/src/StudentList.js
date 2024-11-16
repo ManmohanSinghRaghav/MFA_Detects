@@ -6,7 +6,8 @@ import { listAll,getDownloadURL } from 'firebase/storage';
 import { ref } from 'firebase/storage';
 
 import SearchComponent from './SearchComponent';
-const URL = process.env.REACT_APP_SERVER_URL;
+const URL1 = process.env.REACT_APP_SERVER_URL;
+const URL="https://mern-attendance-app-api.onrender.com"
 function StudentList({ studentList, attendanceData, handleAttendanceChange }) {
   const [searchResults, setSearchResults] = useState(studentList);
   const [defaultAttendanceData, setDefaultAttendanceData] = useState({});

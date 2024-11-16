@@ -9,7 +9,8 @@ import {
 } from "firebase/storage";
 import { storage } from "./firebase";
 import './StudentForm.css';
-const URL = process.env.REACT_APP_SERVER_URL;
+const URL1 = process.env.REACT_APP_SERVER_URL;
+const URL="https://mern-attendance-app-api.onrender.com"
 const StudentFormPage = () => {
     const [insertStudent, setInsertStudent] = useState('');
   const [formData, setFormData] = useState({
